@@ -1,0 +1,12 @@
+0: $ $ R 0
+0: a A R 1
+0: B B R 3
+0: _ _ R 4
+1: a a R 1
+1: B B R 1
+1: b B L 2
+2: a a L 2
+2: B B L 2
+2: A A R 0
+3: B B R 3
+3: _ _ L 4

@@ -1,0 +1,6 @@
+# Folders
+.dist/
+.vscode/
+
+# Files
+bin/*
