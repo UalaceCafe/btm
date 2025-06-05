@@ -23,7 +23,7 @@ $$M = (\Sigma, Q, \Pi, q_0, F, \beta, \omicron)^*$$
 
 where:
 
-- $\Sigma$ is the input alphabet, consisting of _alphanumeric characters_ (i.e., `a`, `g`, `5`, `42`, etc.), the hash character `#` and the blank character ` `;
+- $\Sigma$ is the input alphabet, consisting of _alphanumeric characters_ (i.e., `a`, `g`, `5`, `42`, etc.), the hash character `#` and the asterisk character `*`;
 - $Q$ is the set of non-final states
   - $Q = \{ x | x \subseteq \mathbb{N} \}$
 - $\Pi$ is the partial transition function, which maps a state and an input symbol to a new state, a symbol to write, and a direction to move the tape head;
