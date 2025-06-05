@@ -19,7 +19,7 @@ Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implem
 
 A TML machine is a 7-tuple:
 
-$$M = (\Sigma, Q, \Pi, q_0, F, \_, \$)^*$$
+$$M = (\Sigma, Q, \Pi, q_0, F, \beta, \omicron)^*$$
 
 where:
 
@@ -31,8 +31,8 @@ where:
   - $q_0 = \{ 0 \}$
 - $F$ is the set of final states
   - $F = \{ \mathbb{N} - Q \}$
-- $\_$ is the blank symbol;
-- $\$$ is start-of-tape symbol.
+- $\beta$ is the blank symbol, represented by the underscore character `_`;
+- $\omicron$ is start-of-tape symbol, represented by the dollar sign `$`.
 
 > [!NOTE]
 > The definition of a TML machine is a variation of the definition used for a Turing Machine by RAMOS, Marcus Vinícius Midena (2010).
