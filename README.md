@@ -19,7 +19,7 @@ Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implem
 
 A TML machine is a 7-tuple:
 
-$$M = (\Sigma, Q, \Pi, q_0, F, \beta, \omicron)^*$$
+$$M = (\Sigma, Q, \Pi, q_0, F, \_, \$)^*$$
 
 where:
 
@@ -31,10 +31,8 @@ where:
   - $q_0 = \{ 0 \}$
 - $F$ is the set of final states
   - $F = \{ \mathbb{N} - Q \}$
-- $\beta$ is the blank symbol
-  - $\beta = \{ \_ \}$
-- $\omicron$ is start-of-tape symbol
-  - $\omicron = \{ \$ \}$
+- $\_$ is the blank symbol;
+- $\$$ is start-of-tape symbol.
 
 > [!NOTE]
 > The definition of a TML machine is a variation of the definition used for a Turing Machine by RAMOS, Marcus Vinícius Midena (2010).
@@ -53,7 +51,13 @@ Two special symbols are defined in the `Makefile`:
   - `STEPS`: optional. If defined, the simulator will print each steps of computation and the final state of the tape.
   - `TAPE_SIZE=x`: optional. For obvious reasons, the tape is finite. If this symbol is defined, the simulator will use a tape of size `x`. Otherwise, the tape will have double the size of the input + 1 for the start-of-tape symbol, which should always be considered when defining the tape size.
 
-Running `make clean` will clean the `bin` directory.
+Running
+
+```bash
+make clean
+```
+
+will clean the `bin` directory.
 
 ## How to run
 
@@ -83,7 +87,7 @@ A TML machine is configured using a non-empty file that defines a set of states 
 
 Each line that defines a transition* must be in the **exact** following format:
 
-```assembly
+```
 qi: x y m qj
 ```
 
