@@ -19,7 +19,7 @@ static inline bool is_whitespace_except_space(char sym) {
 }
 
 static inline bool is_valid_symbol_input(char sym) {
-    return isalnum(sym) || (sym == '*') || (sym == '#');
+    return isalnum(sym) || (sym == '*') || (sym == '#') || (sym == '$');
 }
 
 static inline bool is_valid_symbol_rw(char sym) {

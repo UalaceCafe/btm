@@ -2,6 +2,14 @@
 
 #include "../../include/state_machine.h"
 
+void sm_init(configuration_s config, buffer_s input, state_machine_s* sm) {
+	sm->head_position = 0;
+	sm->current_state = 0;
+	sm->tape = (buffer_s){ 0 };
+
+	sm_populate_tape(sm, input);
+}
+
 void sm_populate_tape(state_machine_s* sm, buffer_s input) {
 #ifndef TAPE_SIZE
 #define TAPE_SIZE ((input.size * 2) + 2)
@@ -29,14 +37,6 @@ void sm_populate_tape(state_machine_s* sm, buffer_s input) {
 		}
 	}
 	sm->tape.data[TAPE_SIZE - 1] = '>';
-}
-
-void sm_init(configuration_s config, buffer_s input, state_machine_s* sm) {
-	sm->head_position = 0;
-	sm->current_state = 0;
-	sm->tape = (buffer_s){ 0 };
-
-	sm_populate_tape(sm, input);
 }
 
 sm_state_s sm_step(state_machine_s* sm, configuration_s config) {
