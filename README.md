@@ -2,7 +2,7 @@
 
 [![Ko-Fi](https://img.shields.io/static/v1?message=Buy%20me%20a%20coffee&logo=kofi&labelColor=ff5e5b&color=434B57&logoColor=white&label=%20)](https://ko-fi.com/ualacecafe)
 
-Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implementation of a Turing machine. It was designed as a personal learning tool for my Theory of Computation class. Because of that, it is supposed to be simple and fun to use, making it suitable for educational purposes for those who want a general understanding of how Turing machines work.
+Turing Machine Lite (TML) is a simulator written in _C_ for a minimalistic implementation of a bounded Turing machine (also called a linear bounded automaton, or LBA). It was designed as a personal learning tool for my Theory of Computation class. As such, it is supposed to be simple and fun to use, making it suitable for educational purposes for those who want a general understanding of how Turing machines and automata work.
 
 ## Table of contents
 - [Turing Machine Lite](#turing-machine-lite)
@@ -17,7 +17,7 @@ Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implem
 
 ## Formal definition
 
-A TML machine is a 7-tuple:
+A TML machine is a 8-tuple:
 
 $$M = (\Sigma, Q, \Pi, q_0, F, \beta, <, >)^*$$
 
@@ -36,7 +36,7 @@ where:
 - $>$ is the end-of-tape symbol, represented by the greater than character `>`.
 
 > [!NOTE]
-> The definition of a TML machine is a variation of the definition used for a Turing Machine by RAMOS, Marcus Vinícius Midena (2010).
+> The definition of a TML machine is a variation of the definitions used by _RAMOS, Marcus Vinícius Midena (2010)_ for a Turing Machine and for a Linear Bounded Automaton.
 
 ## How to compile
 
