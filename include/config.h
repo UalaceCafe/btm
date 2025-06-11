@@ -23,7 +23,7 @@ static inline bool is_valid_symbol_input(char sym) {
 }
 
 static inline bool is_valid_symbol_rw(char sym) {
-    return is_valid_symbol_input(sym) || (sym == '_') || (sym == '$');
+    return is_valid_symbol_input(sym) || (sym == '_') || (sym == '<');
 }
 
 static inline bool is_non_empty(const char* line) {

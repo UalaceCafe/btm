@@ -19,7 +19,7 @@ Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implem
 
 A TML machine is a 7-tuple:
 
-$$M = (\Sigma, Q, \Pi, q_0, F, \beta, \omicron)^*$$
+$$M = (\Sigma, Q, \Pi, q_0, F, \beta, <)^*$$
 
 where:
 
@@ -32,7 +32,7 @@ where:
 - $F$ is the set of final states
   - $F = \{ \mathbb{N} - Q \}$
 - $\beta$ is the blank symbol, represented by the underscore character `_`;
-- $\omicron$ is start-of-tape symbol, represented by the dollar sign `$`.
+- $<$ is the start-of-tape symbol, represented by the less than character `<`.
 
 > [!NOTE]
 > The definition of a TML machine is a variation of the definition used for a Turing Machine by RAMOS, Marcus Vinícius Midena (2010).
@@ -93,8 +93,8 @@ qi: x y m qj
 
 where:
 - `qi`: the current state, which must be a natural number, zero included. Is a non-final state;
-- `x`: the current symbol, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `$`;
-- `y`: the symbol to write on the tape, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `$`;
+- `x`: the current symbol, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `<`;
+- `y`: the symbol to write on the tape, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `<`;
 - `m`: the direction to move the tape head, which must be one of the following characters:
   - `L`: move left;
   - `R`: move right;

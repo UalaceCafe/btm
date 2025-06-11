@@ -19,7 +19,7 @@ void sm_populate_tape(state_machine_s* sm, buffer_s input) {
 		exit(EXIT_FAILURE);
 	}
 
-	sm->tape.data[0] = '$';
+	sm->tape.data[0] = '<';
 
 	for (size_t i = 1; i < TAPE_SIZE; i++) {
 		if ((i - 1) < input.size) {
