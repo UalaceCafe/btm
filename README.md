@@ -19,7 +19,7 @@ Turing Machine Lite (TML) is a simulator written in _C_ of a minimalistic implem
 
 A TML machine is a 7-tuple:
 
-$$M = (\Sigma, Q, \Pi, q_0, F, \beta, <)^*$$
+$$M = (\Sigma, Q, \Pi, q_0, F, \beta, <, >)^*$$
 
 where:
 
@@ -33,6 +33,7 @@ where:
   - $F = \{ \mathbb{N} - Q \}$
 - $\beta$ is the blank symbol, represented by the underscore character `_`;
 - $<$ is the start-of-tape symbol, represented by the less than character `<`.
+- $>$ is the end-of-tape symbol, represented by the greater than character `>`.
 
 > [!NOTE]
 > The definition of a TML machine is a variation of the definition used for a Turing Machine by RAMOS, Marcus Vinícius Midena (2010).
@@ -49,7 +50,7 @@ in this root directory. An executable named `tml` will be generated in the `bin`
 
 Two special symbols are defined in the `Makefile`:
   - `STEPS`: optional. If defined, the simulator will print each steps of computation and the final state of the tape.
-  - `TAPE_SIZE=x`: optional. For obvious reasons, the tape is finite. If this symbol is defined, the simulator will use a tape of size `x`. Otherwise, the tape will have double the size of the input + 1 for the start-of-tape symbol, which should always be considered when defining the tape size.
+  - `TAPE_SIZE=x`: optional. For obvious reasons, the tape is finite. If this symbol is defined, the simulator will use a tape of size `x`. Otherwise, the tape will have double the size of the input + 2 for the start-of-tape and the end-of-tape symbols, which should always be considered when defining the tape size.
 
 Running
 
@@ -93,8 +94,8 @@ qi: x y m qj
 
 where:
 - `qi`: the current state, which must be a natural number, zero included. Is a non-final state;
-- `x`: the current symbol, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `<`;
-- `y`: the symbol to write on the tape, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, or the start-of-tape symbol `<`;
+- `x`: the current symbol, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, the start-of-tape symbol `<` or the end-of-tape symbol `>`;
+- `y`: the symbol to write on the tape, which must either belong to the input alphabet $\Sigma$, be the blank symbol `_`, the start-of-tape symbol `<` or the end-of-tape symbol `>`;
 - `m`: the direction to move the tape head, which must be one of the following characters:
   - `L`: move left;
   - `R`: move right;
@@ -143,10 +144,10 @@ Note that the movement of the tape head is represented as `<-` for `L` and `->` 
 Also, if the `STEPS` symbol was defined during compilation, the program will print each step of computation, showing the current state, the tape head position, and the contents of the tape. For example:
 
 ```
-004. ($A,2,aBb_____)
+004. (<A,2,aBb____>)
 ```
 
-This means that the simulation is currently at step `004`, the current state is `2`, the contents of the tape before the tape head are `$A`, and the contents of the tape at the tape head and forward are `aBb_____`, so the tape head is currently on the `a` character.
+This means that the simulation is currently at step `004`, the current state is `2`, the contents of the tape before the tape head are `<A`, and the contents of the tape at the tape head and forward are `aBb____>`, so the tape head is currently on the `a` character.
 
 To help with the visualization of the tape, at the beginning and, if `STEPS` is defined, at end of simulation, its contents are printed.
 

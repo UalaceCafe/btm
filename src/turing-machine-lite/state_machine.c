@@ -4,10 +4,10 @@
 
 void sm_populate_tape(state_machine_s* sm, buffer_s input) {
 #ifndef TAPE_SIZE
-#define TAPE_SIZE ((input.size * 2) + 1)
+#define TAPE_SIZE ((input.size * 2) + 2)
 #endif
-	if (TAPE_SIZE < input.size + 1) {
-		puts("Error: tape size is too small to fit input and start of tape symbol");
+	if (TAPE_SIZE < input.size + 2) {
+		puts("Error: tape size is too small to fit input and the start-of-tape and end-of-tape symbols");
 		exit(EXIT_FAILURE);
 	}
 
@@ -28,6 +28,7 @@ void sm_populate_tape(state_machine_s* sm, buffer_s input) {
 			sm->tape.data[i] = '_';
 		}
 	}
+	sm->tape.data[TAPE_SIZE - 1] = '>';
 }
 
 void sm_init(configuration_s config, buffer_s input, state_machine_s* sm) {
