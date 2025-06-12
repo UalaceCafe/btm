@@ -49,7 +49,7 @@ As per the definition, a bounded tape Turing Machine satisfies the following con
 2. Its transitions may not print other symbols over the endmarkers;
 3. Its transitions may neither move to the left of the left endmarker nor to the right of the right endmarker;
 
-BTM, however, does not enforce the second condition: the simulator won't prevent the user from writing symbols over the endmarkers, including the endmarkers themselves. They are not, however, considered part of the input alphabet $\Sigma$ and may only be written (and read) as part of a transition.
+BTM, however, does not enforce the second condition: the simulator won't prevent the writing of symbols over the endmarkers, including the endmarkers themselves.
 
 Also, while the tape is finite, its size can be chosen arbitrarily large - as will be seen in the [How to compile](#how-to-compile) section - so blank symbols will be added to the tape if needed, up to the end-of-tape symbol (right endmark).
 
