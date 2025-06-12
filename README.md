@@ -1,23 +1,26 @@
-# Turing Machine Lite
+![BTM](assets/logo.png)
 
 [![Ko-Fi](https://img.shields.io/static/v1?message=Buy%20me%20a%20coffee&logo=kofi&labelColor=ff5e5b&color=434B57&logoColor=white&label=%20)](https://ko-fi.com/ualacecafe)
 
-Turing Machine Lite (TML) is a simulator written in _C_ for a minimalistic implementation of a bounded Turing machine (also called a linear bounded automaton, or LBA). It was designed as a personal learning tool for my Theory of Computation class. As such, it is supposed to be simple and fun to use, making it suitable for educational purposes for those who want a general understanding of how Turing machines and automata work.
-
 ## Table of contents
-- [Turing Machine Lite](#turing-machine-lite)
-  - [Table of contents](#table-of-contents)
-  - [Formal definition](#formal-definition)
-  - [How to compile](#how-to-compile)
-  - [How to run](#how-to-run)
-  - [How to configure a TML machine](#how-to-configure-a-tml-machine)
-  - [Interpreting transitions and computation steps](#interpreting-transitions-and-computation-steps)
-  - [Halting](#halting)
-  - [References](#references)
+- [Table of contents](#table-of-contents)
+- [What is BTM](#what-is-btm)
+- [Formal definition](#formal-definition)
+- [Definition vs formal definition](#definition-vs-formal-definition)
+- [How to compile](#how-to-compile)
+- [How to run](#how-to-run)
+- [How to configure a BTM machine](#how-to-configure-a-btm-machine)
+- [Interpreting transitions and computation steps](#interpreting-transitions-and-computation-steps)
+- [Halting](#halting)
+- [References](#references)
+
+## What is BTM
+
+BTM is a simulator written in _C_ for a programmable bounded tape Turing Machine (also called a linear bounded automaton, or LBA). It was designed as a personal learning tool for my Theory of Computation class. As such, it is supposed to be simple and fun to use, making it suitable for educational purposes for those who want a general understanding of how Turing machines and other automata work.
 
 ## Formal definition
 
-A TML machine is a 8-tuple:
+A BTM machine is a 8-tuple:
 
 $$M = (\Sigma, Q, \Pi, q_0, F, \beta, <, >)^*$$
 
@@ -36,7 +39,19 @@ where:
 - $>$ is the end-of-tape symbol, represented by the greater than character `>`.
 
 > [!NOTE]
-> The definition of a TML machine is a variation of the definitions used by _RAMOS, Marcus Vinícius Midena (2010)_ for a Turing Machine and for a Linear Bounded Automaton.
+> The definition of a BTM machine is a variation of the definitions used by _RAMOS, Marcus Vinícius Midena (2010)_ for a Turing Machine and for a Linear Bounded Automaton.
+
+## Definition vs formal definition
+
+As per the definition, a bounded tape Turing Machine satisfies the following conditions:
+
+1. Its tape includes two special symbols, serving as left and right endmarkers;
+2. Its transitions may not print other symbols over the endmarkers;
+3. Its transitions may neither move to the left of the left endmarker nor to the right of the right endmarker;
+
+BTM, however, does not enforce the second condition: the simulator won't prevent the user from writing symbols over the endmarkers, including the endmarkers themselves. They are not, however, considered part of the input alphabet $\Sigma$ and may only be written (and read) as part of a transition.
+
+Also, while the tape is finite, its size can be chosen arbitrarily large - as will be seen in the [How to compile](#how-to-compile) section - so blank symbols will be added to the tape if needed, up to the end-of-tape symbol (right endmark).
 
 ## How to compile
 
@@ -46,7 +61,7 @@ With `make` installed, run the command
 make
 ```
 
-in this root directory. An executable named `tml` will be generated in the `bin` directory.
+in this root directory. An executable named `btm` will be generated in the `bin` directory.
 
 Two special symbols are defined in the `Makefile`:
   - `STEPS`: optional. If defined, the simulator will print each steps of computation and the final state of the tape.
@@ -62,29 +77,29 @@ will clean the `bin` directory.
 
 ## How to run
 
-To run the simulator, run the `tml` binary found, by default, in the `bin` directory. The simulator accepts the following command line arguments:
+To run the simulator, run the `btm` binary found, by default, in the `bin` directory. The simulator accepts the following command line arguments:
 
 ```
-tml [-h | --help] [<config_file> <input_file>]
+btm [-h | --help] [<config_file> <input_file>]
 ```
 
 where:
 - `-h` or `--help`: prints the help message and exits;
-- `<config_file>`: a file containing the TML machine configuration, which defines a set of states and transitions;
-- `<input_file>`: a file containing the input to be processed by the TML machine. It is simply a sequence of characters, as per the definition of the input alphabet $\Sigma$.
+- `<config_file>`: a file containing the BTM machine configuration, which defines a set of states and transitions;
+- `<input_file>`: a file containing the input to be processed by the BTM machine. It is simply a sequence of characters, as per the definition of the input alphabet $\Sigma$.
 
 For example, to run the $a^nb^n$ language example, you can use the following command:
 
 ```bash
-tml ../examples/anbn/config ../examples/anbn/input
+btm ../examples/anbn/config ../examples/anbn/input
 ```
 
 > [!TIP]
 > Neither the configuration file nor the input file need to be in a specific file format, as long as they are plain text files.
 
-## How to configure a TML machine
+## How to configure a BTM machine
 
-A TML machine is configured using a non-empty file that defines a set of states and its transistions.
+A BTM machine is configured using a non-empty file that defines a set of states and its transistions.
 
 Each line that defines a transition* must be in the **exact** following format:
 
@@ -107,7 +122,7 @@ As per definition, `0` is always the initial state, and the final states are all
 > The configuration file may contain empty lines, but every non-empty line must not deviate from the format above. Comments are not supported.
 
 > [!TIP]
-> The current states of each transition do not need to be defined in any specific order, i.e., you may define transitions from state `1` before defining transitions from state `0`, for example.
+> The current states for each transition do not need to be defined in any specific order, i.e., you may define transitions from state `1` before defining transitions from state `0`, for example.
 
 > [!TIP]
 > Identical transitions are allowed (i.e., no error will be emited if two transitions have the same current state and symbol), as the machine will always choose the first transition that matches. However, this is not recommended as it will increase the number of transitions the machine has to iterate through.

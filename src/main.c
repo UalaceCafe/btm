@@ -19,7 +19,7 @@
 	} while (0);                         \
 
 
-const char* help_message = "Usage: tml [-h | --help] [<config_file> <input_file>]\n\n"
+const char* help_message = "Usage: btm [-h | --help] [<config_file> <input_file>]\n\n"
 						   "Options:\n"
 						   " -h, --help\tDisplay this help message";
 
